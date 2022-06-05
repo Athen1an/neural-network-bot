@@ -1,1 +1,8 @@
+spring:
+  application:
+    name: ruin-through-drinking-bot
 
+telegrambot:
+  bot-name: ${BOT_NAME:}
+  bot-token: ${BOT_TOKEN:}
+  bot-webhook-path: ${BOT_WEBHOOK_PATH:}
