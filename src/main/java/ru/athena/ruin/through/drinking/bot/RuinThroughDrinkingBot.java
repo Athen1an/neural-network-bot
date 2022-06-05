@@ -28,7 +28,7 @@ public class RuinThroughDrinkingBot extends SpringWebhookBot {
         if (message.hasText()) {
             SendMessage sendMessage = new SendMessage();
             sendMessage.setChatId(String.valueOf(message.getChatId()));
-            sendMessage.setText("Hello " + message.getChatId());
+            sendMessage.setText("Я еще тупенький, но я стараюсь");
             return sendMessage;
         }
         return null;
