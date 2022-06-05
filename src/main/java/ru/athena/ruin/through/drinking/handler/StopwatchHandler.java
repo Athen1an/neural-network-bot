@@ -11,19 +11,27 @@ public class StopwatchHandler {
 
     private final Stopwatch stopwatch = Stopwatch.createStarted();
 
+    private static final String SHOW_MESSAGE = "%s без гейских шуток";
+    private static final String RESET_MESSAGE = "Таймер сброшен!" + System.lineSeparator() + "Предыдущая попытка без гейских шуток - %s";
+
     public BotApiMethod<?> showTimer(Message message) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(String.valueOf(message.getChatId()));
-        sendMessage.setText(stopwatch + " без гейских шуток");
+        sendMessage.setText(String.format(SHOW_MESSAGE, stopwatch));
+        sendMessage.disableNotification();
+
         return sendMessage;
     }
 
     public BotApiMethod<?> resetTimer(Message message) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(String.valueOf(message.getChatId()));
-        sendMessage.setText("Таймер сброшен!" + System.lineSeparator() + "Предыдущая попытка без гейских шуток - " + stopwatch);
+        sendMessage.setText(String.format(RESET_MESSAGE, stopwatch));
+        sendMessage.disableNotification();
+
         stopwatch.reset();
         stopwatch.start();
+
         return sendMessage;
     }
 }

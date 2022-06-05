@@ -16,9 +16,9 @@ public class TelegramUpdateHandler {
     public BotApiMethod<?> handle(Update update) {
         Message message = update.getMessage();
         return switch (message.getText()) {
-            case "/help" -> help(message);
-            case "/show" -> stopwatchHandler.showTimer(message);
-            case "/reset" -> stopwatchHandler.resetTimer(message);
+            case "/help" -> message.isGroupMessage() ?  help(message) : null;
+            case "/show" -> message.isGroupMessage() ? stopwatchHandler.showTimer(message) : null;
+            case "/reset" -> message.isGroupMessage() ?  stopwatchHandler.resetTimer(message) : null;
             default -> null;
         };
     }
@@ -30,6 +30,7 @@ public class TelegramUpdateHandler {
                 "/show - показать таймер гейских шуток" +
                 System.lineSeparator() +
                 "/reset - сбросить таймер гейских шуток");
+        sendMessage.disableNotification();
         return sendMessage;
     }
 }
