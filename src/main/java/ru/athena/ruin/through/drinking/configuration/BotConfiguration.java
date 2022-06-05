@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import ru.athena.ruin.through.drinking.bot.RuinThroughDrinkingBot;
 import ru.athena.ruin.through.drinking.configuration.properties.BotProperties;
+import ru.athena.ruin.through.drinking.handler.TelegramUpdateHandler;
 
 @Configuration
 public class BotConfiguration {
@@ -15,7 +16,9 @@ public class BotConfiguration {
     }
 
     @Bean
-    public RuinThroughDrinkingBot ruinThroughDrinkingBot(SetWebhook setWebhook, BotProperties botProperties) {
-        return new RuinThroughDrinkingBot(setWebhook, botProperties);
+    public RuinThroughDrinkingBot ruinThroughDrinkingBot(SetWebhook setWebhook,
+                                                         BotProperties botProperties,
+                                                         TelegramUpdateHandler telegramUpdateHandler) {
+        return new RuinThroughDrinkingBot(setWebhook, botProperties, telegramUpdateHandler);
     }
 }
